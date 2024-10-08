@@ -1,9 +1,7 @@
 
 class AirportManager:
     def __init__(self, airports=None):
-        self.airport = airports 
-        if self.airport is None:
-            self.airport = []
+       self.airports = airports if airports else []
    
     def airport_exists(self, code):
         for airport in self.airports:
@@ -25,14 +23,14 @@ class AirportManager:
         else:
             return self.airports
     
-    def view_airport_by_code(self, code):
+    def search_airport_by_code(self, code):
         for airport in self.airports:
             if airport["Airport Code"] == code:
                 return airport
         return f"No airport found with code {code}"
     
 
-    def view_airport_by_name(self, name):
+    def search_airport_by_name(self, name):
         matching_airports = []
         for airport in self.airports:
             if name.lower() in airport["Airport Name"].lower():

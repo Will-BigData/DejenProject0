@@ -4,7 +4,6 @@ from airport_manager import AirportManager
 
 class AirportApp:
     def __init__(self):
-        # self.airports = []
         self.file_manager = FileManager()
         airports_data = self.file_manager.load_from_file()
         self.airport_manager = AirportManager(airports_data)
@@ -21,7 +20,7 @@ class AirportApp:
     def run(self):
         while True:
             self.display_menu()
-            choice = input("Enter your choice")
+            choice = input("Enter your choice: ")
             if self.validate_choice(choice, ["1", "2", "3", "4", "5"]):
                 if choice == "1":
                     self.add_airport()
@@ -61,11 +60,30 @@ class AirportApp:
             for airport in airports:
                 print(f"{count}. Code: {airport['Airport Code']}, Name: {airport['Airport Name']}")
                 count += 1
+    
 
+    def search_airport_by_code(self):
+        code = input("Enter the airport code: ").strip().upper()
+        airport = self.airport_manager.search_airport_by_code(code)
+        if isinstance(airport, str):
+            print(airport)
+        else:
+            print(f"Code: {airport['Airport Code']}, Name: {airport['Airport Name']}")
+    
+    def search_airport_by_name(self):
+        name = input("Enter the airport name to search (partial match allowed): ").strip().lower()
+        matching_airports = self.airport_manager.search_airport_by_name(name)
+        if isinstance(matching_airports, str):
+            print(matching_airports)
+        else:
+            count = 1
+            for airport in matching_airports:
+                print(f"{count}. Code: {airport['Airport Code']}, Name: {airport['Airport Name']}")
+                count += 1
 
-
-
-
+    def save_and_exit(self):
+        self.file_manager.save_to_file(self.airport_manager.airports)
+        print("Data saved successfully. Exiting...")
 
     def validate_choice(self, choice, valid_choices):
         if choice in valid_choices:
@@ -77,5 +95,5 @@ class AirportApp:
 
 if __name__ == "__main__":
     app = AirportApp()
-    app.display_menu()
+    app.run()
    

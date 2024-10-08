@@ -6,11 +6,11 @@ class FileManager:
         self.file_path=file_path
         print(f"Using file path: {self.file_path}")
 
-    def load_data(self):
+    def load_from_file(self):
         data = []
         if os.path.exists(self.file_path):
             try:
-                with open(self.file_path, mode='r', newLine='') as file:
+                with open(self.file_path, mode='r', newline='') as file:
                     reader = csv.DictReader(file)
                     for row in reader:
                         data.append({"Airport Code": row["Airport Code"], "Airport Name": row["Airport Name"]})
@@ -24,8 +24,12 @@ class FileManager:
 
     #save data to file
     def save_to_file(self, data):
-        with open(self.file_path, mode='w', newLine='') as file:
-            writer  = csv.DictWriter(file, fieldnames=["Airport Code", "Airport Name"])
-            writer.writeheader()
-            writer.writerows(data)
-        print("Data saved successfully")
+        try:
+            with open(self.file_path, mode='w', newline='') as file:
+                writer = csv.DictWriter(file, fieldnames=["Airport Code", "Airport Name"])
+                writer.writeheader()
+                writer.writerows(data)  # Write the entire list of airports (existing + new)
+                print(f"Data successfully saved to: {self.file_path}")
+        except Exception as e:
+            print(f"Error saving to CSV file: {e}")
+
