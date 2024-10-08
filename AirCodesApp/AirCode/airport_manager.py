@@ -30,6 +30,20 @@ class AirportManager:
             if airport["Airport Code"] == code:
                 return airport
         return f"No airport found with code {code}"
+    
 
+    def view_airport_by_name(self, name):
+        matching_airports = []
+        for airport in self.airports:
+            if name.lower() in airport["Airport Name"].lower():
+                matching_airports.append(airport)
+            
+        if matching_airports:
+            return matching_airports
+        else:
+            return f"No airport found with name {name}"
+
+    def get_airports(self):
+        return self.airports
 
 
