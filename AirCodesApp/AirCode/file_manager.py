@@ -2,7 +2,7 @@ import csv
 import os
 
 class FileManager:
-    def __init__(self, file_path):
+    def __init__(self, file_path='../data/airports.csv'):
         self.file_path=file_path
         print(f"Using file path: {self.file_path}")
 
@@ -19,3 +19,13 @@ class FileManager:
         else:
             print(f"File {self.file_path} not found")
         return data
+    
+
+
+    #save data to file
+    def save_to_file(self, data):
+        with open(self.file_path, mode='w', newLine='') as file:
+            writer  = csv.DictWriter(file, fieldnames=["Airport Code", "Airport Name"])
+            writer.writeheader()
+            writer.writerows(data)
+        print("Data saved successfully")
