@@ -1,3 +1,4 @@
+from colorama import Fore, Style, init
 from file_manager import FileManager
 from airport_manager import AirportManager
 
@@ -10,6 +11,19 @@ class AirportApp:
 
 
     def display_menu(self):
+
+        #Display a cool title
+        print(Fore.CYAN + Style.BRIGHT + f"{'='*45:^90}")
+        print(Fore.GREEN + Style.BRIGHT + f"{'  WELCOME TO AIRPORT CODES MANAGEMENT SYSTEM ':^90}")
+        print(Fore.CYAN + Style.BRIGHT + f"{'='*45:^90}")
+
+        print(Style.RESET_ALL)
+
+        print("Please select an option from the menu below:")
+        print('\n')
+
+
+
         print(" Welcome to Airport Codes Management System Application")
         print("1. Add Airport Code")
         print("2. View All Airport Codes")
