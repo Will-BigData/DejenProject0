@@ -53,11 +53,13 @@ class AirportApp:
     def add_airport(self):
         code = input("Enter the airport code: ").strip().upper()
         name = input("Enter the airport name: ").strip()
+        city = input("Enter the city: ").strip()
+        country = input("Enter the country: ").strip()
 
         if code == "" and name == "":
             print("Airport code and name cannot be empty")
         else:
-            result = self.airport_manager.add_airport(code, name)
+            result = self.airport_manager.add_airport(code, name, city, country)
             if result:
                 print("Airport added successfully")
                 self.file_manager.save_to_file(self.airport_manager.airports)
@@ -66,14 +68,12 @@ class AirportApp:
     
     def view_airports(self):
         airports = self.airport_manager.view_airports()
-
         if isinstance(airports, str):
-            print(airports)
+            print(airports)  # "No airports found" message
         else:
-            count= 1
-            for airport in airports:
-                print(f"{count}. Code: {airport['Airport Code']}, Name: {airport['Airport Name']}")
-                count += 1
+            for idx, airport in enumerate(airports):
+                print(f"{idx + 1}. Code: {airport['Airport Code']}, Name: {airport['Airport Name']}, City: {airport['city']}, Country: {airport['country']}")
+
     
 
     def search_airport_by_code(self):
