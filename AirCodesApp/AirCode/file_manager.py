@@ -1,35 +1,44 @@
 import csv
 import os
+import mysql.connector
+
 
 class FileManager:
-    def __init__(self, file_path='../data/airports.csv'):
-        self.file_path=file_path
-        print(f"Using file path: {self.file_path}")
+    def __init__(self, host='localhost', user='root', password='your_password', database='airport_management'):
+        self.connection = mysql.connector.connect(
+            host='127.0.0.1',
+            user='root',
+            password='pass',
+            database='airportcodes'
+        )
+        self.cursor = self.connection.cursor(dictionary=True)
+        print("Connected to MySQL database")
 
+    # Load data from MySQL database
     def load_from_file(self):
         data = []
-        if os.path.exists(self.file_path):
-            try:
-                with open(self.file_path, mode='r', newline='') as file:
-                    reader = csv.DictReader(file)
-                    for row in reader:
-                        data.append({"Airport Code": row["Airport Code"], "Airport Name": row["Airport Name"]})
-            except Exception as e:
-                print(f"Error loading data: {e}")
-        else:
-            print(f"File {self.file_path} not found")
+        query = "SELECT airport_code AS `Airport Code`, airport_name AS `Airport Name`, city, country FROM airports"
+        self.cursor.execute(query)
+        data = self.cursor.fetchall()  # Fetch all rows from the airports table
         return data
-    
 
-
-    #save data to file
+    # Save data to MySQL database
     def save_to_file(self, data):
         try:
-            with open(self.file_path, mode='w', newline='') as file:
-                writer = csv.DictWriter(file, fieldnames=["Airport Code", "Airport Name"])
-                writer.writeheader()
-                writer.writerows(data)  # Write the entire list of airports (existing + new)
-                print(f"Data successfully saved to: {self.file_path}")
+            for airport in data:
+                query = query = """
+                    INSERT INTO airports (airport_code, airport_name, city, country)
+                    VALUES (%s, %s, %s, %s)
+                    ON DUPLICATE KEY UPDATE airport_name = VALUES(airport_name), city = VALUES(city), country = VALUES(country)
+                """
+                self.cursor.execute(query, (airport['Airport Code'], airport['Airport Name'], airport['city'], airport['country']))
+            self.connection.commit()
+            print(f"Data successfully saved to MySQL database")
         except Exception as e:
-            print(f"Error saving to CSV file: {e}")
+            print(f"Error saving to MySQL database: {e}")
+
+    def close_connection(self):
+        self.connection.close()
+
+
 
