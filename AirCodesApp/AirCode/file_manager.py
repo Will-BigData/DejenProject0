@@ -22,7 +22,7 @@ class FileManager:
             database=database
         )
         self.cursor = self.connection.cursor(dictionary=True)
-        print(f"Connected to MySQL database: {database}")
+        #print(f"Connected to MySQL database: {database}")
 
     # Load data from MySQL database
     def load_from_file(self):

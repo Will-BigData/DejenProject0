@@ -13,13 +13,15 @@ class AirportApp:
     def display_menu(self):
 
         #Display a cool title
+        print('\n')
         print(Fore.CYAN + Style.BRIGHT + f"{'='*45:^90}")
         print(Fore.GREEN + Style.BRIGHT + f"{'  WELCOME TO AIRPORT CODES MANAGEMENT SYSTEM ':^90}")
         print(Fore.CYAN + Style.BRIGHT + f"{'='*45:^90}")
 
         print(Style.RESET_ALL)
 
-        print("Please select an option from the menu below:")
+        print(Fore.GREEN + Style.BRIGHT + f"{' Ready to find your airport code? Please choose an option below.':^90}")
+        print(Style.RESET_ALL)
         print('\n')
 
 
@@ -71,8 +73,13 @@ class AirportApp:
         if isinstance(airports, str):
             print(airports)  # "No airports found" message
         else:
+            # Print table header
+            print(f"{'No.':<5} {'Code':<10} {'Name':<20} {'City':<20} {'Country':<20}")
+            print("-" * 75)  # Separator line
+
+            # Print each airport in table format
             for idx, airport in enumerate(airports):
-                print(f"{idx + 1}. Code: {airport['Airport Code']}, Name: {airport['Airport Name']}, City: {airport['city']}, Country: {airport['country']}")
+                print(f"{idx + 1:<5} {airport['Airport Code']:<10} {airport['Airport Name']:<20} {airport['city']:<20} {airport['country']:<20}")
 
     
 
