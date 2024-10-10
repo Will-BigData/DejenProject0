@@ -1,18 +1,28 @@
 import csv
 import os
 import mysql.connector
-
+from dotenv import load_dotenv
 
 class FileManager:
-    def __init__(self, host='localhost', user='root', password='your_password', database='airport_management'):
+    def __init__(self):
+        # Load environment variables from the .env file
+        load_dotenv()
+
+        # Fetch values from the environment variables
+        host = os.getenv('DB_HOST')
+        user = os.getenv('DB_USER')
+        password = os.getenv('DB_PASSWORD')
+        database = os.getenv('DB_NAME')
+
+        # Connect to the MySQL database using the environment variables
         self.connection = mysql.connector.connect(
-            host='127.0.0.1',
-            user='root',
-            password='pass',
-            database='airportcodes'
+            host=host,
+            user=user,
+            password=password,
+            database=database
         )
         self.cursor = self.connection.cursor(dictionary=True)
-        print("Connected to MySQL database")
+        print(f"Connected to MySQL database: {database}")
 
     # Load data from MySQL database
     def load_from_file(self):
