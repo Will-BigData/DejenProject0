@@ -89,7 +89,7 @@ class AirportApp:
     
     def search_airport_by_name(self):
         name = input("Enter the airport name to search (partial match allowed): ").strip().lower()
-        matching_airports = self.airport_manager.search_airport_by_name(name)
+        matching_airports = self.airport_manager.search_airports_by_name(name)
         if isinstance(matching_airports, str):
             print(matching_airports)
         else:

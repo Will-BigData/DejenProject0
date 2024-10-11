@@ -5,7 +5,6 @@ from dotenv import load_dotenv
 
 class FileManager:
     def __init__(self):
-        # Load environment variables from the .env file
         load_dotenv()
 
         # Fetch values from the environment variables
@@ -24,7 +23,7 @@ class FileManager:
         self.cursor = self.connection.cursor(dictionary=True)
         #print(f"Connected to MySQL database: {database}")
 
-    # Load data from MySQL database
+
     def load_from_file(self):
         data = []
         query = "SELECT airport_code AS `Airport Code`, airport_name AS `Airport Name`, city, country FROM airports"
