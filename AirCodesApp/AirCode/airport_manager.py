@@ -23,19 +23,22 @@ class AirportManager:
 
    
     def view_airports(self):
-        # Return the list of all airports
         if not self.airports:
             return "No airports found."
         else:
             return self.airports
 
+    # def view_airport_by_code(self, code):
+    #     airport = next((airport for airport in self.airports if airport["Airport Code"] == code), None)
+    #     return airport if airport else f"No airport found with code '{code}'."
+    
     def view_airport_by_code(self, code):
-        # Find and return an airport by its code
-        airport = next((airport for airport in self.airports if airport["Airport Code"] == code), None)
-        return airport if airport else f"No airport found with code '{code}'."
+        for airport in self.airports:
+            if airport["Airport Code"] == code:
+                return airport
+            return f"No airport found with code '{code}'."
 
     def search_airports_by_name(self, name):
-        # Find airports by partial name match (case insensitive)
         matching_airports = [airport for airport in self.airports if name.lower() in airport["Airport Name"].lower()]
         return matching_airports if matching_airports else f"No airports found matching '{name}'."
 

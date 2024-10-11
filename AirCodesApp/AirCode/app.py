@@ -21,10 +21,8 @@ class AirportApp:
         print(Style.RESET_ALL)
 
         print(Fore.GREEN + Style.BRIGHT + f"{' Ready to find your airport code? Please choose an option below.':^90}")
-        print(Style.RESET_ALL)
+        #print(Style.RESET_ALL)
         print('\n')
-
-
 
         print(" Welcome to Airport Codes Management System Application")
         print("1. Add Airport Code")
@@ -36,7 +34,7 @@ class AirportApp:
     def run(self):
         while True:
             self.display_menu()
-            choice = input("Enter your choice: ")
+            choice = input(Fore.YELLOW + Style.BRIGHT + "Enter your choice: ")
             if self.validate_choice(choice, ["1", "2", "3", "4", "5"]):
                 if choice == "1":
                     self.add_airport()
@@ -80,8 +78,6 @@ class AirportApp:
             # Print each airport in table format
             for idx, airport in enumerate(airports):
                 print(f"{idx + 1:<5} {airport['Airport Code']:<10} {airport['Airport Name']:<20} {airport['city']:<20} {airport['country']:<20}")
-
-    
 
     def search_airport_by_code(self):
         code = input("Enter the airport code: ").strip().upper()
