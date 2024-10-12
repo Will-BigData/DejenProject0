@@ -46,10 +46,11 @@ class AirportApp:
                 elif choice == "5":
                     self.save_and_exit()
                     break
-            else:
-                print("Invalid choice. Please enter a number from 1 to 5. ")
-            choice = input(Fore.CYAN + Style.BRIGHT + "Enter your choice: ")
-            
+                another_task = input(Fore.YELLOW + Style.BRIGHT + "Do you want to perform another action? (yes/no): ").strip().lower()
+
+                if another_task != "yes":
+                    print("Goodbye!")
+                    break
 
     def add_airport(self):
         code = input("Enter the airport code: ").strip().upper()
@@ -79,8 +80,11 @@ class AirportApp:
         code = input("Enter the airport code: ").strip().upper()
         airport = self.airport_manager.view_airport_by_code(code)
         if isinstance(airport, str):
+          
             print(airport)
         else:
+            print('\n')
+            print("This is the airport code you are looking for: ")
             self.display_table([airport])
             print('\n')
             # print(f"Code: {airport['Airport Code']}, Name: {airport['Airport Name']}, City: {airport['city']}, Country: {airport['country']}")

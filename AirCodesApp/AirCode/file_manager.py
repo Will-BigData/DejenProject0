@@ -14,33 +14,30 @@ class FileManager:
                 with open(self.file_path, mode='r', newline='') as file:
                     reader = csv.DictReader(file)
                     for row in reader:
-                        # Read existing data and load into memory
                         data.append({
                             "Airport Code": row["Airport Code"],
                             "Airport Name": row["Airport Name"],
-                            "City": row["City"],
-                            "Country": row["Country"]
+                            "City": row["City"],  
+                            "Country": row["Country"]  
                         })
-                #print(f"Loaded data from: {self.file_path}")
             except Exception as e:
                 print(f"Error reading CSV file: {e}")
         else:
             print(f"File {self.file_path} not found. Starting with an empty list.")
         return data
 
-    # Save data to a CSV file (append new data while preserving old data)
-    def save_to_file(self, data):
-        existing_data = self.load_from_file()  # Load existing data first
-
-        # Merge new data with existing data
-        all_data = existing_data + data
-
+    def save_to_file(self, new_data):
+        existing_data = self.load_from_file()  
+        
+        for new_airport in new_data:
+            if not any(airport["Airport Code"] == new_airport["Airport Code"] for airport in existing_data):
+                existing_data.append(new_airport)  
         try:
             with open(self.file_path, mode='w', newline='') as file:
-                fieldnames = ["Airport Code", "Airport Name", "city", "country"]
+                fieldnames = ["Airport Code", "Airport Name", "City", "Country"]
                 writer = csv.DictWriter(file, fieldnames=fieldnames)
                 writer.writeheader()
-                writer.writerows(all_data)  # Write the entire list of airports (existing + new)
+                writer.writerows(existing_data)
                 print(f"Data successfully saved to: {self.file_path}")
         except Exception as e:
             print(f"Error saving to CSV file: {e}")
