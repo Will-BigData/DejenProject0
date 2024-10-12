@@ -24,15 +24,16 @@ class AirportApp:
         print("3. Search Airport by Code")
         print("4. Search Airport by Name")
         print("5. Edit Airport Code")
-        print("6. Save and Exit")
+        print("6. Delete Airport by Code")
+        print("7. Save and Exit")
         print('\n')
 
     def run(self):
         while True:
             self.display_menu()
             choice = input(Fore.CYAN + Style.BRIGHT + "Enter your choice: ")
-            while not self.validate_choice(choice, ["1", "2", "3", "4", "5", "6"]):
-                print("Invalid choice. Please enter a number from 1 to 6. ")
+            while not self.validate_choice(choice, ["1", "2", "3", "4", "5", "6", "7"]):
+                print("Invalid choice. Please enter a number from 1 to 7. ")
                 choice = input(Fore.CYAN + Style.BRIGHT + "Enter your choice: ")
 
             if choice == "1":
@@ -46,6 +47,8 @@ class AirportApp:
             elif choice == "5":
                 self.update_airport()
             elif choice == "6":
+                self.delete_airport()
+            elif choice == "7":
                 self.save_and_exit()
                 break
 
@@ -144,6 +147,15 @@ class AirportApp:
                 # Save to CSV after successfully adding the airport
                 self.file_manager.save_to_file(self.airport_manager.get_airports())
 
+    def delete_airport(self):
+        """Deletes an airport by its code."""
+        code = input("Enter the airport code to delete: ").strip().upper()
+        success, message = self.airport_manager.remove_airport_by_code(code)
+
+        print(message)
+        if success:
+            # Save updated data to file after deletion
+            self.file_manager.save_to_file(self.airport_manager.get_airports())
 
     def display_table(self, data):
         table = []
