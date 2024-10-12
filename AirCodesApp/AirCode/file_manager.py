@@ -27,20 +27,17 @@ class FileManager:
         return data
 
     def save_to_file(self, new_data):
-        existing_data = self.load_from_file()  
-        
-        for new_airport in new_data:
-            if not any(airport["Airport Code"] == new_airport["Airport Code"] for airport in existing_data):
-                existing_data.append(new_airport)  
         try:
+            # Overwrite the CSV file with the updated data
             with open(self.file_path, mode='w', newline='') as file:
                 fieldnames = ["Airport Code", "Airport Name", "City", "Country"]
                 writer = csv.DictWriter(file, fieldnames=fieldnames)
                 writer.writeheader()
-                writer.writerows(existing_data)
+                writer.writerows(new_data)
                 print(f"Data successfully saved to: {self.file_path}")
         except Exception as e:
             print(f"Error saving to CSV file: {e}")
+
 
     def close_connection(self):
         print("No connection to close (working with CSV files)")
