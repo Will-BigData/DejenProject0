@@ -53,6 +53,54 @@ class AirportApp:
             if another_task != "yes":
                 print("Goodbye!")
                 break
+    def add_airport(self):
+        code = input("Enter the airport code: ").strip().upper()
+        name = input("Enter the airport name: ").strip()
+        city = input("Enter the city name: ").strip()
+        country = input("Enter the country name: ").strip()
+        print('\n')
+
+        if not code or not name:
+            print("Airport code and name cannot be empty.")
+        else:
+            success, message = self.airport_manager.add_airport(code, name, city, country)
+            print(message)
+            if success:
+                # Save to CSV after successfully adding the airport
+                self.file_manager.save_to_file(self.airport_manager.get_airports())
+    
+
+    def view_airports(self):
+        airports = self.airport_manager.view_airports()
+        if isinstance(airports, str):
+            print(airports)  # "No airports found" message
+        else:
+            print("List of all airports")
+            self.display_table(airports)
+            print('\n')
+    
+    def search_airport_by_code(self):
+        code = input("Enter the airport code: ").strip().upper()
+        airport = self.airport_manager.view_airport_by_code(code)
+        if isinstance(airport, str):
+            print(airport)
+        else:
+            print('\n')
+            print("This is the airport code you are looking for: ")
+            self.display_table([airport])
+            print('\n')
+
+    def search_airport_by_name(self):
+        name = input("Enter the airport name to search (partial match allowed): ").strip().lower()
+        print('\n')
+        matching_airports = self.airport_manager.search_airports_by_name(name)
+        if isinstance(matching_airports, str):
+            print(matching_airports)
+        else:
+            print("This is the airport you are looking for: ")
+            self.display_table(matching_airports)
+            print('\n')
+
 
     def update_airport(self):
         print("\n")
@@ -96,36 +144,6 @@ class AirportApp:
                 # Save to CSV after successfully adding the airport
                 self.file_manager.save_to_file(self.airport_manager.get_airports())
 
-    def view_airports(self):
-        airports = self.airport_manager.view_airports()
-        if isinstance(airports, str):
-            print(airports)  # "No airports found" message
-        else:
-            print("List of all airports")
-            self.display_table(airports)
-            print('\n')
-    
-    def search_airport_by_code(self):
-        code = input("Enter the airport code: ").strip().upper()
-        airport = self.airport_manager.view_airport_by_code(code)
-        if isinstance(airport, str):
-            print(airport)
-        else:
-            print('\n')
-            print("This is the airport code you are looking for: ")
-            self.display_table([airport])
-            print('\n')
-
-    def search_airport_by_name(self):
-        name = input("Enter the airport name to search (partial match allowed): ").strip().lower()
-        print('\n')
-        matching_airports = self.airport_manager.search_airports_by_name(name)
-        if isinstance(matching_airports, str):
-            print(matching_airports)
-        else:
-            print("This is the airport you are looking for: ")
-            self.display_table(matching_airports)
-            print('\n')
 
     def display_table(self, data):
         table = []
