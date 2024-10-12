@@ -1,36 +1,152 @@
-Airport Code,Airport Name
-ATL,Hartsfield-Jackson Atlanta
-BWI,Baltimore-Washington
-BOS,Boston Logan
-CLT,Charlotte Douglas
-MDW,Chicago Midway
-ORD,Chicago O'Hare
-DAL,Dallas Love Field
-DFW,Dallas/Fort-Worth
-DEN,Denver
-DTW,Detroit Metropolitan
-FLL,Fort Lauderdale - Hollywood
-IAH,George Bush Houston
-LAS,McCarran Las Vegas
-LAX,Los Angeles
-MIA,Miami
-MSP,Minneapolis - Saint Paul
-JFK,John F. Kennedy New York
-LGA,LaGuardia New York
-EWR,Newark Liberty
-MCO,Orlando
-PHL,Philadelphia
-PHX,Phoenix Sky Harbor
-PDX,Portland
-SLC,Salt Lake City
-SAN,San Diego
-SFO,San Francisco
-SEA,Seattle - Tacoma
-TPA,Tampa
-DCA,Ronald Reagan Washington
-IAD,Washington Dulles
-111,111
-ABCDEF,ghij
-XXXX,zzzz
-ASDFASDFSADFS,asdfa
-SAFD,sadf
+Airport Code,Airport Name,City,Country
+AAA,Anaa Airport,,French Polynesia
+AAB,Arrabury Airport,,Australia
+AAC,El Arish International Airport,El Arish,Egypt
+AAD,Adado Airport,Adado,Somalia
+AAE,Rabah Bitat Airport,Annaba,Algeria
+AAF,Apalachicola Regional Airport,Apalachicola,United States of America
+AAG,Arapoti Airport,Arapoti,Brazil
+AAH,Aachen-Merzbrück Airport,Aachen,Germany
+AAI,Arraias Airport,Arraias,Brazil
+AAJ,Cayana Airstrip,Awaradam,Suriname
+AAK,Buariki Airport,Buariki,Kiribati
+AAL,Aalborg Airport,Aalborg,Denmark
+AAM,Malamala Airport,Malamala,South Africa
+AAN,Al Ain International Airport,Al Ain,United Arab Emirates
+AAO,Anaco Airport,Anaco,Venezuela
+AAQ,Anapa Vityazevo Airport,Anapa,Russia
+AAR,Aarhus Airport,Aarhus,Denmark
+AAS,Apalapsili Airport,Apalapsili,Indonesia
+AAA,Anaa Airport,,French Polynesia
+AAB,Arrabury Airport,,Australia
+AAC,El Arish International Airport,El Arish,Egypt
+AAD,Adado Airport,Adado,Somalia
+AAE,Rabah Bitat Airport,Annaba,Algeria
+AAF,Apalachicola Regional Airport,Apalachicola,United States of America
+AAG,Arapoti Airport,Arapoti,Brazil
+AAH,Aachen-Merzbrück Airport,Aachen,Germany
+AAI,Arraias Airport,Arraias,Brazil
+AAJ,Cayana Airstrip,Awaradam,Suriname
+AAK,Buariki Airport,Buariki,Kiribati
+AAL,Aalborg Airport,Aalborg,Denmark
+AAM,Malamala Airport,Malamala,South Africa
+AAN,Al Ain International Airport,Al Ain,United Arab Emirates
+AAO,Anaco Airport,Anaco,Venezuela
+AAQ,Anapa Vityazevo Airport,Anapa,Russia
+AAR,Aarhus Airport,Aarhus,Denmark
+AAS,Apalapsili Airport,Apalapsili,Indonesia
+ABCD,efgh,asdf,asdf
+AAA,Anaa Airport,,French Polynesia
+AAB,Arrabury Airport,,Australia
+AAC,El Arish International Airport,El Arish,Egypt
+AAD,Adado Airport,Adado,Somalia
+AAE,Rabah Bitat Airport,Annaba,Algeria
+AAF,Apalachicola Regional Airport,Apalachicola,United States of America
+AAG,Arapoti Airport,Arapoti,Brazil
+AAH,Aachen-Merzbrück Airport,Aachen,Germany
+AAI,Arraias Airport,Arraias,Brazil
+AAJ,Cayana Airstrip,Awaradam,Suriname
+AAK,Buariki Airport,Buariki,Kiribati
+AAL,Aalborg Airport,Aalborg,Denmark
+AAM,Malamala Airport,Malamala,South Africa
+AAN,Al Ain International Airport,Al Ain,United Arab Emirates
+AAO,Anaco Airport,Anaco,Venezuela
+AAQ,Anapa Vityazevo Airport,Anapa,Russia
+AAR,Aarhus Airport,Aarhus,Denmark
+AAS,Apalapsili Airport,Apalapsili,Indonesia
+AAA,Anaa Airport,,French Polynesia
+AAB,Arrabury Airport,,Australia
+AAC,El Arish International Airport,El Arish,Egypt
+AAD,Adado Airport,Adado,Somalia
+AAE,Rabah Bitat Airport,Annaba,Algeria
+AAF,Apalachicola Regional Airport,Apalachicola,United States of America
+AAG,Arapoti Airport,Arapoti,Brazil
+AAH,Aachen-Merzbrück Airport,Aachen,Germany
+AAI,Arraias Airport,Arraias,Brazil
+AAJ,Cayana Airstrip,Awaradam,Suriname
+AAK,Buariki Airport,Buariki,Kiribati
+AAL,Aalborg Airport,Aalborg,Denmark
+AAM,Malamala Airport,Malamala,South Africa
+AAN,Al Ain International Airport,Al Ain,United Arab Emirates
+AAO,Anaco Airport,Anaco,Venezuela
+AAQ,Anapa Vityazevo Airport,Anapa,Russia
+AAR,Aarhus Airport,Aarhus,Denmark
+AAS,Apalapsili Airport,Apalapsili,Indonesia
+ABCD,efgh,asdf,asdf
+QQWERW,qwer,qwer,qwe
+AAA,Anaa Airport,,French Polynesia
+AAB,Arrabury Airport,,Australia
+AAC,El Arish International Airport,El Arish,Egypt
+AAD,Adado Airport,Adado,Somalia
+AAE,Rabah Bitat Airport,Annaba,Algeria
+AAF,Apalachicola Regional Airport,Apalachicola,United States of America
+AAG,Arapoti Airport,Arapoti,Brazil
+AAH,Aachen-Merzbrück Airport,Aachen,Germany
+AAI,Arraias Airport,Arraias,Brazil
+AAJ,Cayana Airstrip,Awaradam,Suriname
+AAK,Buariki Airport,Buariki,Kiribati
+AAL,Aalborg Airport,Aalborg,Denmark
+AAM,Malamala Airport,Malamala,South Africa
+AAN,Al Ain International Airport,Al Ain,United Arab Emirates
+AAO,Anaco Airport,Anaco,Venezuela
+AAQ,Anapa Vityazevo Airport,Anapa,Russia
+AAR,Aarhus Airport,Aarhus,Denmark
+AAS,Apalapsili Airport,Apalapsili,Indonesia
+AAA,Anaa Airport,,French Polynesia
+AAB,Arrabury Airport,,Australia
+AAC,El Arish International Airport,El Arish,Egypt
+AAD,Adado Airport,Adado,Somalia
+AAE,Rabah Bitat Airport,Annaba,Algeria
+AAF,Apalachicola Regional Airport,Apalachicola,United States of America
+AAG,Arapoti Airport,Arapoti,Brazil
+AAH,Aachen-Merzbrück Airport,Aachen,Germany
+AAI,Arraias Airport,Arraias,Brazil
+AAJ,Cayana Airstrip,Awaradam,Suriname
+AAK,Buariki Airport,Buariki,Kiribati
+AAL,Aalborg Airport,Aalborg,Denmark
+AAM,Malamala Airport,Malamala,South Africa
+AAN,Al Ain International Airport,Al Ain,United Arab Emirates
+AAO,Anaco Airport,Anaco,Venezuela
+AAQ,Anapa Vityazevo Airport,Anapa,Russia
+AAR,Aarhus Airport,Aarhus,Denmark
+AAS,Apalapsili Airport,Apalapsili,Indonesia
+ABCD,efgh,asdf,asdf
+AAA,Anaa Airport,,French Polynesia
+AAB,Arrabury Airport,,Australia
+AAC,El Arish International Airport,El Arish,Egypt
+AAD,Adado Airport,Adado,Somalia
+AAE,Rabah Bitat Airport,Annaba,Algeria
+AAF,Apalachicola Regional Airport,Apalachicola,United States of America
+AAG,Arapoti Airport,Arapoti,Brazil
+AAH,Aachen-Merzbrück Airport,Aachen,Germany
+AAI,Arraias Airport,Arraias,Brazil
+AAJ,Cayana Airstrip,Awaradam,Suriname
+AAK,Buariki Airport,Buariki,Kiribati
+AAL,Aalborg Airport,Aalborg,Denmark
+AAM,Malamala Airport,Malamala,South Africa
+AAN,Al Ain International Airport,Al Ain,United Arab Emirates
+AAO,Anaco Airport,Anaco,Venezuela
+AAQ,Anapa Vityazevo Airport,Anapa,Russia
+AAR,Aarhus Airport,Aarhus,Denmark
+AAS,Apalapsili Airport,Apalapsili,Indonesia
+AAA,Anaa Airport,,French Polynesia
+AAB,Arrabury Airport,,Australia
+AAC,El Arish International Airport,El Arish,Egypt
+AAD,Adado Airport,Adado,Somalia
+AAE,Rabah Bitat Airport,Annaba,Algeria
+AAF,Apalachicola Regional Airport,Apalachicola,United States of America
+AAG,Arapoti Airport,Arapoti,Brazil
+AAH,Aachen-Merzbrück Airport,Aachen,Germany
+AAI,Arraias Airport,Arraias,Brazil
+AAJ,Cayana Airstrip,Awaradam,Suriname
+AAK,Buariki Airport,Buariki,Kiribati
+AAL,Aalborg Airport,Aalborg,Denmark
+AAM,Malamala Airport,Malamala,South Africa
+AAN,Al Ain International Airport,Al Ain,United Arab Emirates
+AAO,Anaco Airport,Anaco,Venezuela
+AAQ,Anapa Vityazevo Airport,Anapa,Russia
+AAR,Aarhus Airport,Aarhus,Denmark
+AAS,Apalapsili Airport,Apalapsili,Indonesia
+ABCD,efgh,asdf,asdf
+QQWERW,qwer,qwer,qwe
+QWE,QWE,QWE,QWE
