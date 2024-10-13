@@ -76,7 +76,7 @@ class AirportApp:
     def view_airports(self):
         airports = self.airport_manager.view_airports()
         if isinstance(airports, str):
-            print(airports)  # "No airports found" message
+            print(airports)
         else:
             print("List of all airports")
             self.display_table(airports)

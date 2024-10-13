@@ -9,6 +9,7 @@ __pycache__/
 .env
 env
 data/temp.csv
+/data/temp.csv
 # Distribution / packaging
 .Python
 build/
