@@ -43,10 +43,10 @@ class AirportManager:
                 airport["Airport Name"] = new_name
                 airport["City"] = new_city
                 airport["Country"] = new_country
-                return True, f"Airport updated successfully: Code: {new_code}, Name: {new_name}"
+                return True, f"Airport updated successfully: Code: {new_code}, Name: {new_name}, City: {new_city}, Country: {new_country}"
         return False, f"Airport with code '{old_code}' not found."
 
-    
+
     def remove_airport_by_code(self, code):
         """Removes an airport from the list by its code."""
         for idx, airport in enumerate(self.airports):

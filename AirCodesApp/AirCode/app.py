@@ -1,4 +1,4 @@
-from colorama import Fore, Style, init
+from colorama import Fore, Style, Back
 from tabulate import tabulate
 from file_manager import FileManager
 from airport_manager import AirportManager
@@ -111,12 +111,14 @@ class AirportApp:
         airport = self.airport_manager.view_airport_by_code(code)
 
         if isinstance(airport, str):
-            print(airport)  
+            print(airport)
             return
+        else:
+            print("\nCurrent details:")
+            self.display_table([airport])
+            print('\n')
         
-        # Display the current details
-        print(f"Updating Airport Code: {airport['Airport Code']} - {airport['Airport Name']} - {airport['City']}, {airport['Country']}")
-        
+      
         # Ask for new details, leave empty to keep old values
         new_code = input(f"New Airport Code (or press Enter to keep '{airport['Airport Code']}'): ").strip().upper() or airport['Airport Code']
         new_name = input(f"New Airport Name (or press Enter to keep '{airport['Airport Name']}'): ").strip() or airport['Airport Name']
@@ -125,27 +127,15 @@ class AirportApp:
 
         # Update the airport details
         success, message = self.airport_manager.update_airport(code, new_code, new_name, new_city, new_country)
-        
+        print(message)
+
         if success:
             self.file_manager.save_to_file(self.airport_manager.get_airports())
             print("Airport entry updated successfully.")
         else:
             print("Failed to update the airport entry.")
-
-        code = input("Enter the airport code: ").strip().upper()
-        name = input("Enter the airport name: ").strip()
-        city = input("Enter the city name: ").strip()
-        country = input("Enter the country name: ").strip()
         print('\n')
 
-        if not code or not name:
-            print("Airport code and name cannot be empty.")
-        else:
-            success, message = self.airport_manager.add_airport(code, name, city, country)
-            print(message)
-            if success:
-                # Save to CSV after successfully adding the airport
-                self.file_manager.save_to_file(self.airport_manager.get_airports())
 
     def delete_airport(self):
         """Deletes an airport by its code."""
