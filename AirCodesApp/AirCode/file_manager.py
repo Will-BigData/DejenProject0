@@ -4,7 +4,7 @@ import os
 class FileManager:
     def __init__(self, file_path='../data/airports.csv'):
         self.file_path = file_path
-        print(f"Using file: {self.file_path}")
+        #print(f"Using file: {self.file_path}")
 
     # Load data from the CSV file
     def load_from_file(self):
@@ -34,7 +34,8 @@ class FileManager:
                 writer = csv.DictWriter(file, fieldnames=fieldnames)
                 writer.writeheader()
                 writer.writerows(new_data)
-                print(f"Data successfully saved to: {self.file_path}")
+                #print(f"Data successfully saved to: {self.file_path}")
+            
         except Exception as e:
             print(f"Error saving to CSV file: {e}")
 

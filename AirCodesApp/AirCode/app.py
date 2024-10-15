@@ -15,7 +15,6 @@ class AirportApp:
         print(Fore.GREEN + Style.BRIGHT + f"{'  WELCOME TO AIRPORT CODES MANAGEMENT SYSTEM ':^90}")
         print(Fore.CYAN + Style.BRIGHT + f"{'='*45:^90}")
         print(Style.RESET_ALL)
-
         print(Fore.GREEN + Style.BRIGHT + f"{' Ready to find your airport code? Please choose an option below.':^90}")
         print('\n')
 
@@ -51,7 +50,7 @@ class AirportApp:
             elif choice == "7":
                 self.save_and_exit()
                 break
-
+            print('\n')
             another_task = input(Fore.YELLOW + Style.BRIGHT + "Do you want to perform another action? (yes/no): ").strip().lower()
             if another_task != "yes":
                 print("Goodbye!")
@@ -95,7 +94,7 @@ class AirportApp:
 
     def search_airport_by_name(self):
         name = input("Enter the airport name to search (partial match allowed): ").strip().lower()
-        print('\n')
+        #print('\n')
         matching_airports = self.airport_manager.search_airports_by_name(name)
         if isinstance(matching_airports, str):
             print(matching_airports)
