@@ -5,7 +5,7 @@ class AirportManager:
     def __init__(self, file_manager):
         # Initialize with a file manager that connects to MySQL
         self.file_manager = file_manager
-        self.airports = self.file_manager.load_from_file()  # Load airports from MySQL database
+        self.airports = self.file_manager.load_from_file()
 
     def airport_exists(self, code):
         # Check if an airport with the given code exists in the database
