@@ -5,9 +5,9 @@ from airport_manager import AirportManager
 
 class AirportApp:
     def __init__(self):
-        self.file_manager = FileManager(file_path='../data/airports.csv')
-        airports_data = self.file_manager.load_from_file()
-        self.airport_manager = AirportManager(airports_data)
+        # Initialize FileManager with MySQL DB instead of CSV
+        self.file_manager = FileManager()
+        self.airport_manager = AirportManager(self.file_manager)
 
     def display_menu(self):
         print('\n')
@@ -50,11 +50,13 @@ class AirportApp:
             elif choice == "7":
                 self.save_and_exit()
                 break
+
             print('\n')
-            another_task = input(Fore.YELLOW + Style.BRIGHT + "Do you want to perform another action? (yes/no): ").strip().lower()
-            if another_task != "yes":
+            another_task = input(Fore.YELLOW + Style.BRIGHT + "Do you want to perform another action? (y/n): ").strip().lower()
+            if another_task != "y":
                 print("Goodbye!")
                 break
+
     def add_airport(self):
         code = input("Enter the airport code: ").strip().upper()
         name = input("Enter the airport name: ").strip()
@@ -68,9 +70,8 @@ class AirportApp:
             success, message = self.airport_manager.add_airport(code, name, city, country)
             print(message)
             if success:
-                # Save to CSV after successfully adding the airport
-                self.file_manager.save_to_file(self.airport_manager.get_airports())
-    
+                # Save to MySQL after successfully adding the airport
+                self.file_manager.save_to_file(self.airport_manager.get_airports())  # This is only called once
 
     def view_airports(self):
         airports = self.airport_manager.view_airports()
@@ -80,7 +81,7 @@ class AirportApp:
             print("List of all airports")
             self.display_table(airports)
             print('\n')
-    
+
     def search_airport_by_code(self):
         code = input("Enter the airport code: ").strip().upper()
         airport = self.airport_manager.view_airport_by_code(code)
@@ -94,7 +95,6 @@ class AirportApp:
 
     def search_airport_by_name(self):
         name = input("Enter the airport name to search (partial match allowed): ").strip().lower()
-        #print('\n')
         matching_airports = self.airport_manager.search_airports_by_name(name)
         if isinstance(matching_airports, str):
             print(matching_airports)
@@ -102,7 +102,6 @@ class AirportApp:
             print("This is the airport you are looking for: ")
             self.display_table(matching_airports)
             print('\n')
-
 
     def update_airport(self):
         print("\n")
@@ -116,8 +115,7 @@ class AirportApp:
             print("\nCurrent details:")
             self.display_table([airport])
             print('\n')
-        
-      
+
         # Ask for new details, leave empty to keep old values
         new_code = input(f"New Airport Code (or press Enter to keep '{airport['Airport Code']}'): ").strip().upper() or airport['Airport Code']
         new_name = input(f"New Airport Name (or press Enter to keep '{airport['Airport Name']}'): ").strip() or airport['Airport Name']
@@ -129,21 +127,19 @@ class AirportApp:
         print(message)
 
         if success:
-            self.file_manager.save_to_file(self.airport_manager.get_airports())
+            self.file_manager.save_to_file(self.airport_manager.get_airports())  # Save changes after update
             print("Airport entry updated successfully.")
         else:
             print("Failed to update the airport entry.")
         print('\n')
 
-
     def delete_airport(self):
-        """Deletes an airport by its code."""
         code = input("Enter the airport code to delete: ").strip().upper()
         success, message = self.airport_manager.remove_airport_by_code(code)
 
         print(message)
         if success:
-            # Save updated data to file after deletion
+            # Save updated data to MySQL after deletion
             self.file_manager.save_to_file(self.airport_manager.get_airports())
 
     def display_table(self, data):

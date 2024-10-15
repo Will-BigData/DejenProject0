@@ -1,44 +1,53 @@
-import csv
 import os
+import mysql.connector
+from dotenv import load_dotenv
 
 class FileManager:
-    def __init__(self, file_path='../data/airports.csv'):
-        self.file_path = file_path
-        #print(f"Using file: {self.file_path}")
+    def __init__(self):
+        load_dotenv()
 
-    # Load data from the CSV file
+        # Fetch values from environment variables
+        host = os.getenv('DB_HOST')
+        user = os.getenv('DB_USER')
+        password = os.getenv('DB_PASSWORD')
+        database = os.getenv('DB_NAME')
+
+        # Connect to the MySQL database using environment variables
+        self.connection = mysql.connector.connect(
+            host=host,
+            user=user,
+            password=password,
+            database=database
+        )
+        self.cursor = self.connection.cursor(dictionary=True)
+        print(f"Connected to MySQL database: {database}")
+
+    # Load data from the MySQL database
     def load_from_file(self):
         data = []
-        if os.path.exists(self.file_path):
-            try:
-                with open(self.file_path, mode='r', newline='') as file:
-                    reader = csv.DictReader(file)
-                    for row in reader:
-                        data.append({
-                            "Airport Code": row["Airport Code"],
-                            "Airport Name": row["Airport Name"],
-                            "City": row["City"],  
-                            "Country": row["Country"]  
-                        })
-            except Exception as e:
-                print(f"Error reading CSV file: {e}")
-        else:
-            print(f"File {self.file_path} not found. Starting with an empty list.")
+        try:
+            query = "SELECT airport_code AS `Airport Code`, airport_name AS `Airport Name`, city, country FROM airports"
+            self.cursor.execute(query)
+            data = self.cursor.fetchall()
+        except Exception as e:
+            print(f"Error reading from MySQL database: {e}")
         return data
 
-    def save_to_file(self, new_data):
+    # Save data to the MySQL database
+    def save_to_file(self, data):
         try:
-            # Overwrite the CSV file with the updated data
-            with open(self.file_path, mode='w', newline='') as file:
-                fieldnames = ["Airport Code", "Airport Name", "City", "Country"]
-                writer = csv.DictWriter(file, fieldnames=fieldnames)
-                writer.writeheader()
-                writer.writerows(new_data)
-                #print(f"Data successfully saved to: {self.file_path}")
-            
+            for airport in data:
+                query = """
+                    INSERT INTO airports (airport_code, airport_name, city, country)
+                    VALUES (%s, %s, %s, %s)
+                    ON DUPLICATE KEY UPDATE airport_name = VALUES(airport_name), city = VALUES(city), country = VALUES(country)
+                """
+                self.cursor.execute(query, (airport['Airport Code'], airport['Airport Name'], airport['City'], airport['Country']))
+            self.connection.commit()
+            print("Data successfully saved to MySQL database")
         except Exception as e:
-            print(f"Error saving to CSV file: {e}")
-
+            print(f"Error saving to MySQL database: {e}")
 
     def close_connection(self):
-        print("No connection to close (working with CSV files)")
+        self.connection.close()
+        print("MySQL connection closed")
